@@ -1,0 +1,324 @@
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-color: #f2eded;
+}
+
+.text1 {
+    color: rgb(42, 207, 27);
+    display: flex;
+}
+
+.text2 {
+    color: #000;
+}
+
+header {
+    background-color: #fff;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    padding: 10px;
+    width: 130px;
+    /* border: 5px solid; */
+    /* left: -26px; */
+    /* right: -12px; */
+    /* flex-basis: 132px; */
+    /* flex: 119%; */
+    margin-left: 50px;
+}
+
+.image {
+    /* margin-left: 10px; */
+    vertical-align: middle;
+}
+
+.form-head {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* margin: 15px; */
+    padding-bottom: 30px;
+    /* margin: 15px; */
+}
+
+.form-back {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.radio-profile, .radio-gender, .check-dept {
+    /* margin-left: 9px; */
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.label-content {
+    display: flex;
+    flex-basis: 25%;
+    align-self: center;
+}
+
+textarea {
+    flex-basis: 55%;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.row-content input {
+    flex-basis: 55%;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+select {
+    border-radius: 7px;
+}
+
+.row-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 25px;
+    /* margin: 15px; */
+}
+
+.sal {
+    padding: 5px;
+    width: 35%;
+}
+
+#amount {
+    display: block;
+    width: 70px;
+    flex-basis: 5%;
+    border: 5px solid #fff;
+}
+
+.day {
+    /* margin-right: 15px; */
+    /* width: 16%; */
+    /* padding: 5px; */
+    /* width: 30%; */
+    margin-right: 7px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* width: 100%; */
+    align-content: flex-start;
+}
+
+.dept {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* width: 100%; */
+    align-content: flex-start;
+}
+
+.startdate {
+    display: flex;
+}
+
+button {
+    background-color: #f2eded;
+    color: #000;
+    padding: 10px;
+    width: 20%;
+    border-radius: 7px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    /* margin-left: -57px; */
+    justify-content: space-between;
+}
+
+.btna {
+    padding: 10px;
+    width: 20%;
+}
+
+.btnb {
+    padding: 10px;
+    width: 20%;
+    margin-left: 35%;
+    /* margin-left: 20%; */
+}
+
+.btnc {
+    padding: 10px;
+    width: 20%;
+    /* margin-left: 2%; */
+}
+
+small {
+    width: 20%;
+    font-size: 13px;
+}
+
+.row-content.success input {
+    border-color: #28e210;
+}
+
+.row-content.error input {
+    border-color: #ff331c;
+}
+
+.row-content small {
+    color: #ff2c15;
+    visibility: hidden;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* margin-left: 10px; */
+    align-self: center;
+}
+
+.row-content.error small {
+    visibility: visible;
+}
+
+.startdate small {
+    color: #ff2c15;
+    visibility: hidden;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* margin-left: 10px; */
+    align-self: center;
+}
+
+.startdate.error small {
+    visibility: visible;
+}
+  
+@media only screen and (max-width: 820px) {
+    .header {
+        width: 100%;
+    }
+
+    .logo {
+        margin: 0;
+        height: 45px;
+        margin-left: 0px;
+    }
+
+    .check-dept, .radio-gender, .radio-profile {
+        display: flex;
+        flex-direction: row;
+        /* flex-basis: 19px; */
+         width: 80px;
+         align-items: center;
+    }
+
+    .form-head {
+        font-size: 15px;
+    }
+
+    label, small, option {
+        font-size: 12px;
+    }
+
+    .row-content {
+        width: 100%;
+        /* margin: 15px; */
+    }
+
+    .form {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .btna, .btnb, .btnc {
+        font-size: 10px;
+    }
+
+    .row-content input {
+        width: 100%;
+        /* margin: 10px; */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo {
+        margin: 0;
+        height: 45px;
+        margin-left: 0px;
+        padding: 10px;
+    }
+
+    .check-dept, .radio-gender, .radio-profile {
+        display: flex;
+        flex-direction: row;
+        /* flex-basis: 19px; */
+        width: 80px;
+        align-items: center;
+    }
+
+    .form-head {
+        font-size: 15px;
+    }
+
+    label, small, option {
+        font-size: 12px;
+    }
+
+    .startdate {
+        flex-direction: column;
+    }
+
+    .row-content {
+        width: 100%;
+        /* margin: 15px; */
+    }
+
+    .buttons {
+        flex-direction: column;
+        /* justify-content: center; */
+        margin: 0 auto; 
+        /* flex: auto; */
+        font-size: 10px;
+        /* margin-bottom: 10px; */
+        width: 100%;
+        /* align-content: center; */
+        align-items: center;
+    }
+
+    .form {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .btna, .btnb, .btnc {
+        font-size: 10px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .row-content input {
+        width: 100%;
+        /* margin: 10px; */
+    }
+}
