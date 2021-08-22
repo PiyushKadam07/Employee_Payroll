@@ -55,6 +55,50 @@
                     </div>
                 </div>
 
+                 <!-- UC4 -->
+                 <div class = "row-content">
+                    <label class = "label-content"> Gender </label>
+                    <label class = "radio-gender">
+                        <input type="radio" name="gender" value="Male">
+                        <label>Male</label>
+                    </label>
+                    <label class = "radio-gender">
+                        <input type="radio" name="gender" value="Female">
+                        <label>Female</label>
+                    </label>
+                </div>
+
+                <div class = "row-content">
+                    <label class = "label-content"> Department </label>
+                    <div class = "dept">
+                        <label class = "check-dept">
+                            <input type="checkbox" name="dept" value="HR">
+                            <label>HR</label>
+                        </label>
+                        <label class = "check-dept">
+                            <input type="checkbox" name="dept" value="Sales">
+                            <label>Sales</label>
+                        </label>
+                        <label class = "check-dept">
+                            <input type="checkbox" name="dept" value="Finance">
+                            <label>Finance</label>
+                        </label>
+                        <label class = "check-dept">
+                            <input type="checkbox" name="dept" value="Engineer">
+                            <label>Engineer</label>
+                        </label>
+                        <label class = "check-dept">
+                            <input type="checkbox" name="dept" value="Others">
+                            <label>Others</label>
+                        </label>
+                    </div>
+                </div>
+
+                <div class = "row-content">
+                    <label class = "label-content"> Salary </label>
+                    <input id="rangeInput" type="range" min="10000" max="400000" oninput="amount.value=rangeInput.value" />
+                    <input id="amount" type="number" min="10000" max="400000" oninput="rangeInput.value=amount.value" />
+                </div>
             </div>
         </div>
     </body>
