@@ -2,7 +2,7 @@ body {
     height: 100vh;
     width: 100%;
     margin: 0;
-    background-color: #f2eded;
+    background-color: #F7F7F7;
 }
 
 .text1 {
@@ -117,6 +117,7 @@ select {
     margin-right: 7px;
     margin-bottom: 10px;
     padding: 5px;
+    display: flex;
 }
 
 .profile {
@@ -135,16 +136,13 @@ select {
     align-content: flex-start;
 }
 
-.startdate {
-    display: flex;
-}
-
 button {
-    background-color: #f2eded;
+    background-color: #E2E2E2;
     color: #000;
     padding: 10px;
     width: 20%;
     border-radius: 7px;
+    border-color: 1px solid #969696;
 }
 
 .buttons {
@@ -199,17 +197,12 @@ small {
     visibility: visible;
 }
 
-.startdate small {
-    color: #ff2c15;
-    visibility: hidden;
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
-    /* margin-left: 10px; */
-    align-self: center;
+.row-content.success select {
+    border-color: #28e210;
 }
 
-.startdate.error small {
-    visibility: visible;
+.row-content.error select {
+    border-color: #ff331c;
 }
   
 @media only screen and (max-width: 820px) {
