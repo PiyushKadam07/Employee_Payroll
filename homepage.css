@@ -1,0 +1,148 @@
+.body-header {
+    display: flex;
+    padding: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.left {
+    display: flex;
+    width: 50%;
+    padding: 5px;
+}
+
+.header {
+    font-family: Roboto, sans-serif;
+    color: #42515F;
+}
+
+.right {
+    width: 50%;
+    text-align-last: right;
+}
+
+.gen {
+    font-size: 17px;
+} 
+
+.number {
+    margin-bottom: 30px;
+    color: #fff;
+    margin-left: 5px;
+    background-color: #82A70C;
+    width: 20px;
+    text-align: center;
+}
+
+.searchbtn {
+    width: 40px;
+    background-color: #fff;
+    border-radius: 16px;
+}
+
+.adduserbtn {
+    width: 103px;
+    background-color: #82A70C;
+    color: #fff;
+    font-size: 13px;
+}
+
+.body-table {
+    padding: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.emptable {
+    width: 100%;
+}
+
+.emptable thead {
+    background-color: #42515F;
+    color: #fff;
+}
+
+th {
+    font-size: 15px;
+    font-family: Roboto, sans-serif;
+}
+
+.table-head {
+    height: 50px;
+}
+
+.row {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E3E3E3;
+
+}
+
+label {
+    display: block;
+    text-align: center;
+}
+
+.image1 {
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+.name {
+    font-size: 17px;
+}
+
+.department {
+    padding: 3px;
+    width: 55px;
+    font-family: Roboto, sans-serif;
+    background-color: #E9FEA5;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 20px;
+    flex-wrap: wrap;;
+}
+
+@media only screen and (max-width: 820px) {
+    
+    .body-header {
+        width: 90%;
+    }
+    
+    .left {
+        display: flex;
+        width: 45%;
+        padding: 5px;
+    }
+
+    .number {
+        margin-bottom: 30px;
+        margin-left: 10px;
+        width: 20px;
+    }
+
+    .right {
+        width: 55%;
+    }
+
+    .name {
+        font-size: 10px;
+    }
+
+    .adduserbtn {
+        width: 88px;
+        font-size: 10px;
+    }
+    
+    .body-table {
+        width: 90%;
+    }
+
+    .gen {
+        font-size: 13px;
+    }
+
+}
