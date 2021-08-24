@@ -22,7 +22,7 @@ const checkName = (name) => {
         showError(name,'Minimum name should be greater than 3 characters');
     } 
     else if (regx.test(name.value) == false) {
-        showError(name,'Name invalid');
+        showError(name,'Name must start with capital');
     }      
     else {
         showSuccess(name);
@@ -40,7 +40,7 @@ const checkDate = (date, month, year) => {
     var date2 = new Date(current_date);
     var diffTime = Math.abs(date2 - date1);
     var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    console.log(date2,date1,diffDays) ;
+    // console.log(date2,date1,diffDays) ;
     if ( date == "00" || month == "00" || year == "0000" ) {
         showError(document.getElementById("year"),'Select date');
     }
@@ -77,8 +77,74 @@ const validate = () => {
     checkDate(date,month,year);
 }
 
+function save () {
+    try {
+        setEmployeepayrollobject();
+    }
+    catch (exception) {
+        console.error(exception);
+        return;
+    }
+}
 
+let newData = {}
 
+function setEmployeepayrollobject() {
+    try {
+        const salary = document.getElementById('amount').value;
 
+        newData.name = document.getElementById('name').value;
+        newData.profile = radiovalue(document.getElementsByName('profile'));
+        newData.gender = radiovalue(document.getElementsByName('gender'));
+        newData.department = multivalue(document.getElementsByName('dept'));
+        
+        let startdate = new Array();
+        startdate.push(document.getElementById("date").value);
+        startdate.push(document.getElementById("month").value);
+        startdate.push(document.getElementById("year").value);
+        
+        newData.notes = document.getElementById('notes').value;
+        console.log(newData,startdate,salary);
+        
+        createlocalStorage(newData);
+    }
+    catch (exception) {
+        console.error(exception);
+    }
+}
+
+function radiovalue(genvalues) {
+    for(var i = 0; i < genvalues.length; i++) {
+        if (genvalues[i].checked) {
+            console.log(genvalues[i].value);
+            return genvalues[i].value;
+        }
+    }
+}
+
+function multivalue(deptvalues) {
+    let deptlist = new Array();
+    for(var i = 0; i < deptvalues.length; i++) {
+        if (deptvalues[i].checked) {
+            deptlist.push(deptvalues[i].value)
+        }
+    }
+    console.log(deptlist);
+    return deptlist;
+}
+
+// Uc16
+function createlocalStorage(empdata) {
+    let emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
+    console.log(emplocalpayrolllist);
+    if (emplocalpayrolllist != undefined) {
+        console.log(emplocalpayrolllist);
+        emplocalpayrolllist.push(empdata);
+    }
+    else {
+        emplocalpayrolllist = [empdata];
+    }
+    localStorage.setItem("Payrolllist",JSON.stringify(emplocalpayrolllist));
+}
 
 
