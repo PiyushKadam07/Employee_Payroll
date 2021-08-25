@@ -31,3 +31,5 @@ UC 14 - Display Employee Details in Tabular Format using Template Literals
 UC 15 - Ability to view Employee Payroll details in a Tabular Format from JSON Object { - Use Template Literals to populate the inner HTML - Set the Table Data values from the JSON Object - Make sure to create an HTML to showcase each Department - Make sure to use the for loop to populate multiple }
 
 UC 16 - Ability to view Employee Payroll details from Local Storage { - Retrieve Employee Payroll Data from Local Storage and assign to variable that has a scope across js file and display the number in the Header Text. }
+
+UC 17 - to update & delete user in local storage & UI.
