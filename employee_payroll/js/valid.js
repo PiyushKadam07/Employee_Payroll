@@ -22,15 +22,19 @@ const checkName = (name) => {
     var regx = /^[A-Z][a-zA-Z]{2}([a-zA-Z]+)?[\s]?([a-zA-Z]+)?$/;
     if (name.value.trim() === '') {
         showError(name,'Name is required');
+        return false;
     }
     else if (name.value.length < 3) {
         showError(name,'Minimum name should be greater than 3 characters');
+        return false;
     } 
     else if (regx.test(name.value) == false) {
         showError(name,'Name must start with capital');
+        return false;
     }      
     else {
         showSuccess(name);
+        return true;
     }
 }
 
@@ -90,6 +94,7 @@ const validate = () => {
 function save () {
     var x = checkName(name);
     var y = checkDate(document.getElementById("date").value,document.getElementById("month").value,document.getElementById("year").value);
+    console.log(x,y);
     if ( x == true && y == true ) {
         try {
             setEmployeepayrollobject();
@@ -101,6 +106,7 @@ function save () {
     }
     else {
         alert (" Enter details correctly.");
+        return;
     } 
 }
 
@@ -273,3 +279,9 @@ const setSelectedValues = (multivalue, value) => {
             item.checked = true; 
     });
 }
+
+
+
+
+
+
