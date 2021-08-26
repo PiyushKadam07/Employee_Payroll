@@ -106,7 +106,7 @@
                 <div class = "row-content">
                     <label class = "label-content"> Start Date </label>
                     <div class = "startdate">
-                        <select name = "date" id = "date" class = "day">
+                        <select name = "date" id = "date" class = "day" oninput="validate()">
                             <option value='00'> Select Date </option>
                             <option value='01'>01</option>
                             <option value='02'>02</option>
@@ -140,7 +140,7 @@
                             <option value='30'>30</option>
                             <option value='31'>31</option>
                         </select>
-                        <select name = "month" id = "month" class = "day">
+                        <select name = "month" id = "month" class = "day" oninput="validate()">
                             <option value='00'>Select Month</option>
                             <option value='01'>January</option>
                             <option value='02'>February</option>
