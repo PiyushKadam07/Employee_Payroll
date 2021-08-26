@@ -131,6 +131,7 @@ label {
     .body-table {
         width: 90%;
         margin: 0 auto;
+        overflow-x: auto;
     }
 
     .gen, .name, .department {
