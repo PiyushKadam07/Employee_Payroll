@@ -1,5 +1,5 @@
 // UC14
-const table_content =
+//const table_content =
 `<table class = "emptable">
 <thead>
     <tr class = "table-head">
@@ -315,11 +315,21 @@ const table_content =
     </tr>
 </tbody>
 </table>`
-document.getElementById('detailstable').innerHTML = table_content;
+// document.getElementById('detailstable').innerHTML = table_content;
 
+var emparray = new Array();
+var empupdate = new Array();
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    createInnerHTML();
+    ajaxcall("GET", site_properties.json_server, true)
+    .then( responseText => {
+            console.log("Data received", responseText);
+            emparray = JSON.parse(responseText);
+            createInnerHTML();
+        })
+    .catch( error => {
+        console.log("Error " + error)
+    });
 });
 
 // UC15
@@ -383,10 +393,9 @@ function createInnerHTML() {
     }
    
     let table_content = `${headerHTML}`;
-   
     //var emparray = createEmployeePayrollJSON();
     //localStorage.setItem("Payrolllist",JSON.stringify(emparray)); 
-    let emparray = JSON.parse(localStorage.getItem("Payrolllist"));   // for removing the details from local storage and homepage 
+    //let emparray = JSON.parse(localStorage.getItem("Payrolllist"));   // for removing the details from local storage and homepage 
     //empdata = JSON.parse(localStorage.getItem("Payrolllist"));   
 
     function department(deptlist){
@@ -427,36 +436,71 @@ function createInnerHTML() {
 
     // UC17
     //remove details from local storage and html
+    // this.remove = function(row) {
+    //     let emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
+    //     //console.log(emplocalpayrolllist);
+    //     let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == row.id );
+    //     //console.log(emppaydata);
+    //     if (emppaydata == undefined) {
+    //         console.log("No entry found");
+    //         return;
+    //     } 
+    //     else {
+    //         emparray.splice(row.id, 1);
+    //         const index = emplocalpayrolllist.map(empdata => empdata.id).indexOf(emppaydata.id);
+    //         //console.log(index);
+    //         emplocalpayrolllist.splice(index, 1);
+    //         // console.log(emplocalpayrolllist)
+    //         localStorage.setItem("Payrolllist",JSON.stringify(emplocalpayrolllist)); 
+    //     }
+    //     createInnerHTML();
+    // }
+
+    //deleting details using promise
     this.remove = function(row) {
-        let emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
-        //console.log(emplocalpayrolllist);
-        let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == row.id );
-        //console.log(emppaydata);
-        if (emppaydata == undefined) {
-            console.log("No entry found");
-            return;
-        } 
-        else {
-            emparray.splice(row.id, 1);
-            const index = emplocalpayrolllist.map(empdata => empdata.id).indexOf(emppaydata.id);
-            //console.log(index);
-            emplocalpayrolllist.splice(index, 1);
-            // console.log(emplocalpayrolllist)
-            localStorage.setItem("Payrolllist",JSON.stringify(emplocalpayrolllist)); 
-        }
-        createInnerHTML();
+        var url = site_properties.json_server+"/"+row.id;
+        // console.log(url);
+        ajaxcall("DELETE", url, true)
+        .then( responseText => {
+                console.log("Data deleted", responseText);
+                emparray = JSON.parse(responseText);
+                createInnerHTML();
+            })
+        .catch( error => {
+            console.log("Error " + error)
+        });
     }
 
+    // update details from local storage and html
+    // this.update = function(row) {
+    //     let emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
+    //     let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == row.id );
+    //     // console.log(emppaydata);
+    //     if (!emppaydata) {
+    //         return;
+    //     }
+    //     localStorage.setItem("updateEmp",JSON.stringify(emppaydata));
+    //     window.location.assign("../pages/employee_payroll.html"); 
+    // }
+
+
+    // updating details using promise
     this.update = function(row) {
-        let emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
-        let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == row.id );
-        // console.log(emppaydata);
-        if (!emppaydata) {
-            return;
-        }
-        localStorage.setItem("updateEmp",JSON.stringify(emppaydata));
-        window.location.assign("../pages/employee_payroll.html"); 
-    }
-
+        // url = site_properties.json_server+"/"+row.id;
+        // console.log(url);
+        window.location.assign("../pages/employee_payroll.html?"+row.id); 
+  
+        // ajaxcall("GET", url, true)
+        // .then( responseText => {
+        //         console.log("Data to be updated", responseText);
+        //         empupdate = JSON.parse(responseText);
+        //         console.log(empupdate,url);
+        //         checkupdates(url);
+        //         // window.location.assign("../pages/employee_payroll.html"); 
+        //     })
+        // .catch( error => {
+        //     console.log("Error " + error)
+        // });
+   }
 
 }
