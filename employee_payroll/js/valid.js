@@ -94,7 +94,7 @@ const validate = () => {
 function save () {
     var x = checkName(name);
     var y = checkDate(document.getElementById("date").value,document.getElementById("month").value,document.getElementById("year").value);
-    console.log(x,y);
+    // console.log(x,y);
     if ( x == true && y == true ) {
         try {
             setEmployeepayrollobject();
@@ -129,27 +129,54 @@ function setEmployeepayrollobject() {
         newData.startdate = date + '/' + month + '/' + year;
         newData.notes = document.getElementById('notes').value;
 
-        var emppayrollupdate = JSON.parse(localStorage.getItem("updateEmp"));
-        var emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
-        if (!emppayrollupdate) {
-            if ( emplocalpayrolllist.length == 0 ){
-                newData.id = 0;
-            }
-            else {
-                newData.id = emplocalpayrolllist.length + 1;
-            }
+        //for updating the data take id & update
+        let url1 = window.location.href;
+        let uid = url1.split('?');
+        if ( uid[1] != undefined ) {
+            newData.id = uid[1];
+            let url = site_properties.json_server+"/"+newData.id;
+            ajaxcall("PUT", url, true, newData)
+                .then( responseText => {
+                        console.log("Updated data", responseText);
+                    })
+                .catch( error => {
+                    console.log("Error " + error)
+                });
         }
         else {
-            console.log(emppayrollupdate[0], emppayrollupdate.length);
-            newData.id = emppayrollupdate.id;
-            let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == emppayrollupdate.id );
-            const index = emplocalpayrolllist.map(empdata => empdata.id).indexOf(emppaydata.id);
-            emplocalpayrolllist.splice(index, 1);
-            localStorage.setItem("Payrolllist",JSON.stringify(emplocalpayrolllist)); 
-            localStorage.removeItem('updateEmp')
+            newData.id = Math.floor(Math.random() * 1000);
+            let url = site_properties.json_server;
+            ajaxcall("POST", url, true, newData)
+                .then( responseText => {
+                        console.log("Data added", responseText);
+                    })
+                .catch( error => {
+                    console.log("Error " + error)
+                });
         }
-        // console.log(newData,startdate,salary);
-        createlocalStorage(newData);
+        
+        // creating object & storing the details on local storage also used for updating details
+        // var emppayrollupdate = JSON.parse(localStorage.getItem("updateEmp"));
+        // var emplocalpayrolllist = JSON.parse(localStorage.getItem("Payrolllist"));
+        // if (!emppayrollupdate) {
+        //     if ( emplocalpayrolllist.length == 0 ){
+        //         newData.id = 0;
+        //     }
+        //     else {
+        //         newData.id = emplocalpayrolllist.length + 1;
+        //     }
+        // }
+        // else {
+        //     console.log(emppayrollupdate[0], emppayrollupdate.length);
+        //     newData.id = emppayrollupdate.id;
+        //     let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == emppayrollupdate.id );
+        //     const index = emplocalpayrolllist.map(empdata => empdata.id).indexOf(emppaydata.id);
+        //     emplocalpayrolllist.splice(index, 1);
+        //     localStorage.setItem("Payrolllist",JSON.stringify(emplocalpayrolllist)); 
+        //     localStorage.removeItem('updateEmp')
+        // }
+        // // console.log(newData,startdate,salary);
+        // createlocalStorage(newData);
         window.location.assign("../pages/home_page.html");
     }
     catch (exception) {
@@ -224,29 +251,54 @@ const unsetSelectedValues = (value) => {
 
 //check first when the page is loaded 
 window.addEventListener("DOMContentLoaded", (event) => {
-    
-    // checkName(name);
-    // validate();
-    checkupdates(); 
+//     // checkName(name);
+//     // validate();
+     checkupdates(); 
 });
 
+let emppayrollobj = {
 
-//if there is any employee details present in updateEmp key on local storage
-function checkupdates() {
-    const employeepayroll = localStorage.getItem('updateEmp');
-    if (employeepayroll == undefined) {
-        return;
+};
+
+// using id in the href take data & update
+function checkupdates(row) {
+    // console.log(row);
+    let url1 = window.location.href;
+    let uid = url1.split('?');
+    // console.log(url,uid, uid[1]);
+    if ( uid != undefined ) {
+        let url = site_properties.json_server+"/"+uid[1];
+        ajaxcall("GET", url, true)
+        .then( responseText => {
+                console.log("Data to be updated", responseText);
+                emppayrollobj = JSON.parse(responseText);
+                // console.log(emppayrollobj);
+                setform(emppayrollobj);
+            })
+        .catch( error => {
+            console.log("Error " + error)
+        });
     }
     else {
-        let emppayrollobj = JSON.parse(employeepayroll);
-        // console.log(emppayrollobj);
-        setform(emppayrollobj);
+        return;
     }
+
+    //if there is any employee details present in updateEmp key on local storage
+    // const employeepayroll = localStorage.getItem('updateEmp');
+    // if (employeepayroll == undefined) {
+    //     return;
+    // }
+    // else {
+    //     let emppayrollobj = JSON.parse(employeepayroll);
+    //     // console.log(emppayrollobj);
+    //     setform(emppayrollobj);
+    // }
 }
 
 
 //set form values if there is employee details in updateEmp
 const setform = (emppayrollobj) => {
+    // console.log(emppayrollobj);
     setValue('#name', emppayrollobj.name); 
     setSelectedValues('[name = profile]', emppayrollobj.profile);  
     setSelectedValues('[name = gender]', emppayrollobj.gender); 
