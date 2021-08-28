@@ -1,0 +1,198 @@
+<!-- Ajax demo using callback, promise & async-await -->
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-compatible"  content = "IE=edge">
+        <meta name = "viewport" content = "width=device-width, inital-scale=1.0">
+        <title> Document </title>
+    </head>
+
+    <body>
+        <p>Using callback</p>
+        <button type = "submit" id ="get2">GET</button>
+        <button type = "submit" id ="add2">ADD</button>
+        <button type = "submit" id ="delete2">DELETE</button>  
+
+        <p>Using promise</p>
+        <button type = "submit" id ="get">GET</button>
+        <button type = "submit" id ="add">ADD</button>
+        <button type = "submit" id ="delete">DELETE</button>  
+  
+        <p>Using async- await</p>
+        <button type = "submit" id ="get1">GET</button>
+        <button type = "submit" id ="add1">ADD</button>
+        <button type = "submit" id ="delete1">DELETE</button>  
+
+        <script>
+            function ajaxcall (methodType, url, callback, async = true, data = null) {
+                return new Promise((resolve,reject) => {
+                    var xmlhttp = new XMLHttpRequest();
+                    
+                    xmlhttp.onreadystatechange = function() {
+                        if (xmlhttp.readyState == 4) {
+                            if ( xmlhttp.status >= 200 && xmlhttp.status < 300 ) {
+                                resolve(xmlhttp.responseText);
+                            }
+                            else {
+                                reject("Failure response");
+                            }
+                        }
+                    }
+                    xmlhttp.open(methodType, url, async);
+                    if(data) {
+                        xmlhttp.setRequestHeader("Content-Type","application/json");
+                        xmlhttp.send(JSON.stringify(data));
+                    } 
+                    else {
+                        xmlhttp.send();
+                    }
+                });
+            }
+
+            function ajaxcall1 (methodType, url, callback, async = true, data = null) {
+                var xmlhttp = new XMLHttpRequest();
+                    
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4) {
+                        if ( xmlhttp.status >= 200 && xmlhttp.status < 300 ) {
+                            console.log(xmlhttp.responseText);
+                        }
+                        else {
+                            console.log("Failure response");
+                        }
+                    }
+                }
+                xmlhttp.open(methodType, url, async);
+                if(data) {
+                    xmlhttp.setRequestHeader("Content-Type","application/json");
+                    xmlhttp.send(JSON.stringify(data));
+                } 
+                else {
+                    xmlhttp.send();
+                }
+            }
+
+            const baseurl = "  http://localhost:3000/employees";
+            const baseurl1 = "  http://localhost:3000/employees/8";
+
+            //displaying data 
+            function getuser (data) {
+                console.log(data);
+            }
+
+            //deleting the data 
+            function deleteuser (data) {
+                console.log(data);
+            }
+
+            // adding the data
+            function adduser (data) {
+                console.log(data);
+            }
+
+            let userdata = {
+                "profile": "../assets/Ellipse 1.png",
+                "name": "Ajay Kumar",
+                "gender": "Male",
+                "department": ["HR", "Sales"],
+                "salary": "10000",
+                "startdate": "23-07-2021",
+                "note": "Hey"
+            }
+
+            //displaying the data using callback
+            document.getElementById("get2").addEventListener("click", function() {
+                try {
+                const data = ajaxcall1("get", baseurl, getuser, true)
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+
+            //deleting the data using callback
+            document.getElementById("delete2").addEventListener("click", function() {
+                try {
+                const data = ajaxcall1("delete", baseurl1, deleteuser, true)
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+
+            //adding the data using callback
+            document.getElementById("add2").addEventListener("click", function() {
+                try {
+                const data = ajaxcall1("post", baseurl, adduser, false, userdata);
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+           
+            //displaying data using promise
+            document.getElementById("get").addEventListener("click", function() {
+                try {
+                    const getdata = ajaxcall("get", baseurl, getuser, false).then(responseText => {console.log("Users details: " + responseText)}).catch(error => console.log("Error Status: " + JSON.stringify(error)));
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+
+             //displaying data using async await
+             document.getElementById("get1").addEventListener("click", async function() {
+                try {
+                    const getdata = await ajaxcall("get", baseurl, getuser, false);
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+            
+            // deleting the data using promise
+            document.getElementById("delete").addEventListener("click", function() {
+                try {
+                    const deldata = ajaxcall("delete", baseurl1, deleteuser, false).then(responseText => {console.log("User deleted: " + responseText)}).catch(error => console.log("Error Status: " + JSON.stringify(error)));
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+            
+            // deleting the data using async await
+            document.getElementById("delete1").addEventListener("click", async function() {
+                try {
+                const data = await ajaxcall("delete", baseurl1, deleteuser, false);
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+            
+            // adding the data using promise
+            document.getElementById("add").addEventListener("click", function() {
+                try {
+                const data = ajaxcall("post", baseurl, adduser, false, userdata).then(responseText => {console.log("Userdata added: " + responseText)}).catch(error => console.log("Error Status: " + JSON.stringify(error)));
+
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+            
+            // adding the data using async await
+            document.getElementById("add1").addEventListener("click", async function() {
+                try {
+                const data = await ajaxcall("post", baseurl, adduser, false, userdata);
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+                        
+        </script>
+    </body>
+</html>

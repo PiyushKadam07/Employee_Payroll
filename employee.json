@@ -1,0 +1,82 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "profile": "../assets/Ellipse 1.png",
+      "name": "Keerthi Kumar",
+      "gender": "Female",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hello"
+    },
+    {
+      "id": 2,
+      "profile": "../assets/Ellipse 3.png",
+      "name": "Iqbal Shaikh",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hello"
+    },
+    {
+      "profile": "../assets/Ellipse 1.png",
+      "name": "Keerthi Kumar",
+      "gender": "Female",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hello",
+      "id": 3
+    },
+    {
+      "profile": "../assets/Ellipse 1.png",
+      "name": "Ajay Kumar",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hey",
+      "id": 4
+    },
+    {
+      "profile": "../assets/Ellipse 1.png",
+      "name": "Ajay Kumar",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hey",
+      "id": 6
+    },
+    {
+      "profile": "../assets/Ellipse 1.png",
+      "name": "Ajay Kumar",
+      "gender": "Male",
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "10000",
+      "startdate": "23-07-2021",
+      "note": "Hey",
+      "id": 7
+    }
+  ]
+}
