@@ -33,3 +33,9 @@ UC 15 - Ability to view Employee Payroll details in a Tabular Format from JSON O
 UC 16 - Ability to view Employee Payroll details from Local Storage { - Retrieve Employee Payroll Data from Local Storage and assign to variable that has a scope across js file and display the number in the Header Text. }
 
 UC 17 - to update & delete user in local storage & UI.
+
+UC 18 - using ajax update & delete data.
+
+uc 19 - replace local storage with json server
+
+uc 20 - registration page
