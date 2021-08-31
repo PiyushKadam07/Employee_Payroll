@@ -1,0 +1,70 @@
+<!-- Employee Payroll -->
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-compatible"  content = "IE=edge">
+        <meta name = "viewport" content = "width=device-width, inital-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/style.css"> 
+        <link rel="stylesheet" type="text/css" href="../css/homepage.css">
+        <link rel="stylesheet" type="text/css" href="../css/login.css">  
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title> Employee Payroll </title>
+    </head>
+
+    <body>
+        <!-- preloader -->
+        <div id="overlay">
+            <div class="spinner"></div> 
+        </div>
+        <!-- UC11-->
+        <div>
+            <header>
+                <div class = "logo">
+                    <img src = "../assets/logo.png" alt = "logo">
+                    <div class = "logo-text">
+                        <span class = "text1">EMPLOYEE</span>
+                        <span class = "text2">PAYROLL</span>
+                    </div>
+                    <div class = "head-right">
+                        <button class = "logout" onclick="logout()"> Logout </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Uc12 -->
+            <div class = "body-header">
+                <div class = "left">
+                    <div class = "header"><b>Employee Details</b></div>
+                    <div class = "number" id = "number">`${number}`</div>
+                </div>
+                <div class = "right">
+                    <div class = "searchbtn">
+                        <input type = "text" class = "filter" id = "filter" oninput="(new createInnerHTML()).filter(this)">
+                        <i class="material-icons">&#xe8b6;</i>
+                    </div>
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" class = "searchbtn" width="16" height="16" onclick="w3_open()" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>  -->
+                    <div class = "rightend">
+                        <button class = "adduserbtn"><svg xmlns="http://www.w3.org/2000/svg" class = "adbtn"; width="20px"; height="20px"; style = "margin-right:8px"><path d="M0 0h24v24H0z" fill="none"/><path fill="#ffffff" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Add User </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- table details -->
+             <div class = "body-table" >
+                <table class = "emptable" id = "detailstable">
+    
+                </table>
+            </div>
+        </div>
+        <script src = "../js/homepage.js"></script>
+        <script src = "../js/valid.js"></script>
+        <script src = "../js/siteproperties.js"></script>
+        <script src = "../service/http_service.js"></script>
+        <script src = "../js/filter.js"></script>
+        <script src = "../js/login.js"></script>
+    </body>
+</html>
