@@ -1,4 +1,9 @@
-
+//check first when the page is loaded 
+window.addEventListener("DOMContentLoaded", (event) => {
+    checkadmin();
+    displayuser();
+    checkupdates(); 
+});
 const name = document.getElementById("name");
 
 //validation error msg
@@ -60,11 +65,11 @@ const checkDate = (date, month, year) => {
         return false;
     }
     else if ( month == month1 && date > day1 ) {
-        showError(document.getElementById("date"),'Future date not allowed');
+        showError(document.getElementById("year"),'Future date not allowed');
         return false;
     } 
     else if ( month > month1 ) {
-        showError(document.getElementById("month"),'Future date not allowed');
+        showError(document.getElementById("year"),'Future date not allowed');
         return false;
     }
     else if ( diffDays > 30 ) {
@@ -105,7 +110,6 @@ function save () {
         }
     }
     else {
-        alert (" Enter details correctly.");
         return;
     } 
 }
@@ -132,7 +136,18 @@ function setEmployeepayrollobject() {
         //for updating the data take id & update
         let url1 = window.location.href;
         let uid = url1.split('?');
-        if ( uid[1] != undefined ) {
+        if ( uid[1] == "xx" ) {
+            newData.id = Math.floor(Math.random() * 1000);
+            let url = site_properties.json_server;
+            ajaxcall("POST", url, true, newData)
+                .then( responseText => {
+                        console.log("Data added", responseText);
+                    })
+                .catch( error => {
+                    console.log("Error " + error)
+                });
+        }
+        else if ( uid[1] != undefined ) {
             newData.id = uid[1];
             let url = site_properties.json_server+"/"+newData.id;
             ajaxcall("PUT", url, true, newData)
@@ -177,7 +192,7 @@ function setEmployeepayrollobject() {
         // }
         // // console.log(newData,startdate,salary);
         // createlocalStorage(newData);
-        window.location.assign("../pages/home_page.html");
+        window.location.assign("../pages/home_page.html?"+uid[2]);
     }
     catch (exception) {
         console.error(exception);
@@ -249,12 +264,18 @@ const unsetSelectedValues = (value) => {
 }
 
 
-//check first when the page is loaded 
-window.addEventListener("DOMContentLoaded", (event) => {
-//     // checkName(name);
-//     // validate();
-     checkupdates(); 
-});
+// display user name
+function displayuser() {
+    let emppaydata = JSON.parse(localStorage.getItem("Login_admin"));
+    // console.log(emppaydata);
+    for ( data of emppaydata){
+        var username = data.email.split('@');;
+    }
+    // console.log(username, username[0]);
+    let display = 'Hello, '+ username[0];
+    document.getElementById('display-user').innerHTML = display;
+    return;
+}
 
 let emppayrollobj = {
 
@@ -262,10 +283,11 @@ let emppayrollobj = {
 
 // using id in the href take data & update
 function checkupdates(row) {
-    // console.log(row);
     let url1 = window.location.href;
     let uid = url1.split('?');
-    // console.log(url,uid, uid[1]);
+    // console.log(uid, uid[1], uid[2]);
+    let emplocalpayrolllist = JSON.parse(localStorage.getItem("Logout_admin"));
+    let emppaydata = emplocalpayrolllist.find( empdata => empdata.id == uid[1] );
     if ( uid != undefined ) {
         let url = site_properties.json_server+"/"+uid[1];
         ajaxcall("GET", url, true)
@@ -276,7 +298,7 @@ function checkupdates(row) {
                 setform(emppayrollobj);
             })
         .catch( error => {
-            console.log("Error " + error)
+            // console.log("Error " + error)
         });
     }
     else {
@@ -332,7 +354,20 @@ const setSelectedValues = (multivalue, value) => {
     });
 }
 
+// will not update & go back to homepage
+function cancel() {
+    let url1 = window.location.href;
+    let uid = url1.split('?');
+    window.location.assign("../pages/home_page.html?"+uid[2]);
+}
 
+//check wether user is present on local storage or not if yes then allow access
+function checkadmin() {
+    let emplocalpayrolllist = JSON.parse(localStorage.getItem("Login_admin"));
+    if ( emplocalpayrolllist.length == 0 ) {
+        window.location.assign("../pages/login.html");
+    }
+}
 
 
 
