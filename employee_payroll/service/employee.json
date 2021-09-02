@@ -1,0 +1,112 @@
+{
+  "employees": [
+    {
+      "name": "Iqbal Shaikh",
+      "profile": "../assets/Ellipse 4.png",
+      "gender": "Male",
+      "department": [
+        "Finance"
+      ],
+      "salary": "103903",
+      "startdate": "30/08/2021",
+      "notes": "Hello",
+      "id": 2
+    },
+    {
+      "name": "Aarti Kumari",
+      "profile": "../assets/Ellipse 1.png",
+      "gender": "Female",
+      "department": [
+        "HR"
+      ],
+      "salary": "327398",
+      "startdate": "08/08/2021",
+      "notes": "Hello",
+      "id": 3
+    },
+    {
+      "name": "Ajay Kumar",
+      "profile": "../assets/Ellipse 4.png",
+      "gender": "Male",
+      "department": [
+        "Finance",
+        "Engineer"
+      ],
+      "salary": "228795",
+      "startdate": "23/08/2021",
+      "notes": "Hey",
+      "id": 4
+    },
+    {
+      "name": "Vishal R",
+      "profile": "../assets/Ellipse 3.png",
+      "gender": "Male",
+      "department": [
+        "Engineer"
+      ],
+      "salary": "370659",
+      "startdate": "25/08/2021",
+      "notes": "Hey",
+      "id": 473
+    },
+    {
+      "name": "Vishal Kumar",
+      "profile": "../assets/Ellipse 4.png",
+      "gender": "Male",
+      "department": [
+        "Sales",
+        "Finance"
+      ],
+      "salary": "361915",
+      "startdate": "24/08/2021",
+      "notes": "Hey!!!",
+      "id": 163
+    },
+    {
+      "name": "Abhishek",
+      "profile": "../assets/Ellipse 4.png",
+      "gender": "Male",
+      "department": [
+        "Others"
+      ],
+      "salary": "340110",
+      "startdate": "10/08/2021",
+      "notes": "Hi",
+      "id": 952
+    },
+    {
+      "name": "Aditya",
+      "profile": "../assets/Ellipse 4.png",
+      "gender": "Male",
+      "department": [
+        "Engineer"
+      ],
+      "salary": "309141",
+      "startdate": "24/08/2021",
+      "notes": "hey",
+      "id": 709
+    }
+  ],
+  "admin": [
+    {
+      "phone": "9876543210",
+      "passwd": "hello",
+      "id": 11
+    },
+    {
+      "phone": "9012345678",
+      "passwd": "lmnopq",
+      "id": 12
+    },
+    {
+      "phone": "8888888888",
+      "passwd": "abcdef",
+      "id": 13
+    },
+    {
+      "phone": "9999999999",
+      "passwd": "qwerty",
+      "id": 14
+    }
+  ]
+}
